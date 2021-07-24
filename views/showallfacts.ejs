@@ -1,0 +1,32 @@
+<%- include('header'); -%>
+
+
+
+
+<div class="fact-card-container">
+  <div class="fact-container-heading">
+    <p>All Science Facts</p>
+  </div>
+  <% for(var i=0; i < facts.length; i++) {%>
+      <% const imgsrc = "images/facts/"+facts[i].imgsrc %> 
+      <% const factHeading = facts[i].factHeading %> 
+      <% const factId = facts[i].factId %> 
+      <% const factDiscription = facts[i].factDiscription %> 
+      <form action = "/showfact" class="fact-card" method = "POST">
+          <img class="fact-card-img" src = <%= imgsrc %>  alt = <%= factHeading %>  />
+          <div>
+              <h3><%= factHeading.toUpperCase() %></h3> 
+              <p><%= factDiscription %> </p>
+              <button class="btn classic-button" type="submit" name="factId"  value = <%= factId %> >Read More</button>
+          </div>
+      </form>
+  <% } %>
+</div>
+
+
+
+
+
+
+
+<%- include('footer'); -%>

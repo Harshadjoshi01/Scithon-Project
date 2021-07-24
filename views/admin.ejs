@@ -1,0 +1,340 @@
+<%- include('header'); -%>
+<% if (message) { %>
+<div style="text-align: center" class="alert alert-<%= message.type %>">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong> <%= message.message %></strong>
+</div>
+<% } %>
+<% let class_eleven_physics = [
+"MATHEMATICAL TOOL FOR PHYSICS", 
+"UNITS AND MEASUREMENTS",
+"VECTOR",
+"ONE DIMENSIONAL MOTION",
+"RELATIVE MOTION",
+"PROJECTILE MOTION",
+"NEWTON'S LAWS OF MOTION (NLM)",
+"WORK POWER ENERGY",
+"CIRCULAR MOTION",
+"CENTRE OF MASS (COM)",
+"ROTATIONAL MOTION"];
+let class_eleven_chemistry = [
+"Some Basic Concepts of Chemistry",
+"Structure of Atom",
+"Classification of Elements and Periodicity in Properties",
+"Chemical Bonding and Molecular Structure",
+"States of Matter",
+"Thermodynamics",
+"Equilibrium",
+"Redox Reactions",
+"Hydrogen",
+"The s-Block Elements",
+"The p-Block Elements",
+"Organic Chemistry – Some Basic Principles and Techniques",
+"Hydrocarbons",
+"Environmental Chemistry",
+];
+let class_eleven_mathematics = [
+"Sets",
+"Relations and Functions",
+"Trigonometric Functions",
+"Principle of Mathematical Induction",
+"Complex Numbers and Quadratic Equations",
+"Linear Inequalities",
+"Permutations and Combinations",
+"Binomial Theorem",
+"Sequences and Series",
+"Straight Lines",
+"Conic Sections",
+"Introduction to Three Dimensional Geometry",
+"Limits and Derivatives",
+"Mathematical Reasoning",
+"Statistics",
+"Probability",
+];
+let class_twelve_physics = [
+"ELECTRIC CHARGES AND FIELDS",
+"ELECTROSTATIC POTENTIAL AND CAPACITANCE",
+"CURRENT ELECTRICITY",
+"MOVING CHARGES AND MAGNETISM",
+"MAGNETISM AND MATTER",
+"ELECTROMAGNETIC INDUCTION",
+"ALTERNATING CURRENT",
+"ELECTROMAGNETIC WAVES",
+"RAY OPTICS AND OPTICAL INSTRUMENTS",
+"WAVE OPTICS",
+"DUAL NATURE OF RADIATION AND MATTER",
+"ATOMS",
+"NUCLEI",
+"SEMICONDUCTOR ELECTRONICS: MATERIALS, DEVICES AND SIMPLE CIRCUITS",
+];
+let class_twelve_chemistry = [
+"THE SOLID STATE",
+"SOLUTIONS",
+"ELECTROCHEMISTRY",
+"CHEMICAL KINETICS",
+"SURFACE CHEMISTRY",
+"GENERAL PRINCIPLES AND PROCESSES OF ISOLATION OF ELEMENTS",
+"THE p-BLOCK ELEMENTS",
+"THE d-AND f-BLOCK ELEMENTS",
+"COORDINATION COMPOUNDS",
+"Haloalkanes and Haloarenes ",
+"Alcohols, Phenols and Ethers",
+"Aldehydes, Ketones and Carboxylic Acids",
+"Amines",
+"Carbohydrates",
+"Polymers",
+"Chemistry in Everyday Life",
+];
+let class_twelve_mathematics = [
+"Relations and Functions",
+"Inverse Trigonometric Functions",
+"Matrices",
+"Determinants",
+"Continuity and Differentiability",
+"Application of Derivatives",
+"Integrals",
+"Application of Integrals",
+"Differential Equations",
+"Vector Algebra",
+"Three Dimensional Geometry",
+"Linear Programming",
+"Probability",
+]; %>
+<div class="eleven-heading">
+  <p style="margin-top:7rem;">ADD POST</p>
+  <hr>
+</div>
+<div class="forms">
+  <form action="/addfact" method="POST" encType="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputHeading">Fact Heading</label>
+      <input type="text" class="form-control form-control-lg" name="Heading" placeholder="Fact Heading">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Fact Discription</label>
+      <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" name="Discription"
+        rows="3"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputVideoCode">Youtube Video Code</label>
+      <input type="text" class="form-control form-control-lg" name="Video_Code" placeholder="Youtube Video Code">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Fact Body Content</label>
+      <textarea class="form-control form-control-lg" id="exampleFormControlTextarea1" name="Content"
+        rows="5"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">Fact Video thumbnail</label>
+      <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1">
+    </div>
+    <div style="text-align: center" class="form-group">
+      <button type="submit" class="btn classic-button">Submit</button>
+    </div>
+  </form>
+</div>
+<br>
+<div class="eleven-heading">
+  <p style="margin-top:7rem;">DELETE POST</p>
+  <hr>
+</div>
+<div class="forms">
+  <form action="/deletefact" method="POST">
+    <div class="form-group">
+      <label for="exampleInputHeading">Fact Heading</label>
+      <input type="text" class="form-control form-control-lg" name="Heading" placeholder="Fact Heading">
+    </div>
+    <div style="text-align: center" class="form-group">
+      <button type="submit" class="btn classic-button">Submit</button>
+    </div>
+  </form>
+</div>
+<br>
+<div class="eleven-heading">
+  <p style="margin-top:7rem;">UPLOAD VIDEO PPT AND YOUTUBE LINK</p>
+  <hr>
+</div>
+<div class="forms">
+  <form action="/addmaterial" method="POST" encType="multipart/form-data">
+    <div class="form-group">
+      <label for="exampleInputHeading">Topic Name</label>
+      <input type="text" class="form-control form-control-lg" name="topic_name" placeholder="Topic Name">
+    </div>
+    <div class="form-group">
+      <label for="exampleInputHeading">Youtube Link</label>
+      <input type="text" class="form-control form-control-lg" name="video_link" placeholder="Youtube Link">
+    </div>
+    <h1 style="margin: 2rem 0;">Select chapter from proper class</h1>
+    <div class="form-group">
+      <div>
+        <label for="department">PHYSICS XI</label>
+        <select name="ep_chapter" class="form-control">
+          <% class_eleven_physics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">CHEMISTRY XI</label>
+        <select name="ec_chapter" class="form-control">
+          <% class_eleven_chemistry.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">MATHEMATICS XI</label>
+        <select name="em_chapter" class="form-control">
+          <% class_eleven_mathematics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">PHYSICS XII</label>
+        <select name="tp_chapter" class="form-control">
+          <% class_twelve_physics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">CHEMISTRY XII</label>
+        <select name="tc_chapter" class="form-control">
+          <% class_twelve_chemistry.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">MATHEMATICS XII</label>
+        <select name="tm_chapter" class="form-control">
+          <% class_twelve_mathematics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>    
+    <div class="form-group">
+      <label for="exampleFormControlFile1">PPT</label>
+      <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1">
+    </div>
+    <div style="text-align: center" class="form-group">
+        <button type="submit" class="btn classic-button">Submit</button>
+    </div>
+  </form>
+</div>
+<br>
+<div class="eleven-heading">
+  <p style="margin-top:7rem;">UPLOAD NOTES</p>
+  <hr>
+</div>
+<div class="forms">
+  <form action="/addnotes" method="POST" encType="multipart/form-data">
+    <h1 style="margin: 2rem 0;">Select chapter from proper class</h1>
+    <div class="form-group">
+      <div>
+        <label for="department">PHYSICS XI</label>
+        <select name="ep_chapter" class="form-control">
+          <% class_eleven_physics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">CHEMISTRY XI</label>
+        <select name="ec_chapter" class="form-control">
+          <% class_eleven_chemistry.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">MATHEMATICS XI</label>
+        <select name="em_chapter" class="form-control">
+          <% class_eleven_mathematics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">PHYSICS XII</label>
+        <select name="tp_chapter" class="form-control">
+          <% class_twelve_physics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">CHEMISTRY XII</label>
+        <select name="tc_chapter" class="form-control">
+          <% class_twelve_chemistry.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <div>
+        <label for="department">MATHEMATICS XII</label>
+        <select name="tm_chapter" class="form-control">
+          <% class_twelve_mathematics.forEach(function(chapter){ %>
+          <option style = "font-size: 1.5rem;" value=<%= chapter.replace(/ /g,'').toLowerCase() %> ><%= chapter %></option>
+          <%  });%>
+          <option style = "font-size: 1.5rem;" value= "none" selected >NONE</option>          
+        </select>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="exampleFormControlFile1">NOTES</label>
+      <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1">
+    </div>   
+    <div style="text-align: center" class="form-group">
+        <button type="submit" class="btn classic-button">Submit</button>
+    </div>
+  </form>
+</div>
+<br>
+
+<%- include('footer'); -%>

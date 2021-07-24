@@ -1,0 +1,303 @@
+<% if (message) { %>
+  <div style="text-align: center" class="alert alert-<%= message.type %>">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      <strong> <%= message.message %></strong>
+  </div>
+  <% } %>
+
+<%- include('header'); -%>
+
+<% let class_eleven_physics = [
+"MATHEMATICAL TOOL FOR PHYSICS", 
+"UNITS AND MEASUREMENTS",
+"VECTOR",
+"ONE DIMENSIONAL MOTION",
+"RELATIVE MOTION",
+"PROJECTILE MOTION",
+"NEWTON'S LAWS OF MOTION (NLM)",
+"WORK POWER ENERGY",
+"CIRCULAR MOTION",
+"CENTRE OF MASS (COM)",
+"ROTATIONAL MOTION"];
+let class_eleven_chemistry = [
+"Some Basic Concepts of Chemistry",
+"Structure of Atom",
+"Classification of Elements and Periodicity in Properties",
+"Chemical Bonding and Molecular Structure",
+"States of Matter",
+"Thermodynamics",
+"Equilibrium",
+"Redox Reactions",
+"Hydrogen",
+"The s-Block Elements",
+"The p-Block Elements",
+"Organic Chemistry – Some Basic Principles and Techniques",
+"Hydrocarbons",
+"Environmental Chemistry",
+];
+let class_eleven_mathematics = [
+"Sets",
+"Relations and Functions",
+"Trigonometric Functions",
+"Principle of Mathematical Induction",
+"Complex Numbers and Quadratic Equations",
+"Linear Inequalities",
+"Permutations and Combinations",
+"Binomial Theorem",
+"Sequences and Series",
+"Straight Lines",
+"Conic Sections",
+"Introduction to Three Dimensional Geometry",
+"Limits and Derivatives",
+"Mathematical Reasoning",
+"Statistics",
+"Probability",
+];
+let class_twelve_physics = [
+"ELECTRIC CHARGES AND FIELDS",
+"ELECTROSTATIC POTENTIAL AND CAPACITANCE",
+"CURRENT ELECTRICITY",
+"MOVING CHARGES AND MAGNETISM",
+"MAGNETISM AND MATTER",
+"ELECTROMAGNETIC INDUCTION",
+"ALTERNATING CURRENT",
+"ELECTROMAGNETIC WAVES",
+"RAY OPTICS AND OPTICAL INSTRUMENTS",
+"WAVE OPTICS",
+"DUAL NATURE OF RADIATION AND MATTER",
+"ATOMS",
+"NUCLEI",
+"SEMICONDUCTOR ELECTRONICS: MATERIALS, DEVICES AND SIMPLE CIRCUITS",
+];
+let class_twelve_chemistry = [
+"THE SOLID STATE",
+"SOLUTIONS",
+"ELECTROCHEMISTRY",
+"CHEMICAL KINETICS",
+"SURFACE CHEMISTRY",
+"GENERAL PRINCIPLES AND PROCESSES OF ISOLATION OF ELEMENTS",
+"THE p-BLOCK ELEMENTS",
+"THE d-AND f-BLOCK ELEMENTS",
+"COORDINATION COMPOUNDS",
+"Haloalkanes and Haloarenes ",
+"Alcohols, Phenols and Ethers",
+"Aldehydes, Ketones and Carboxylic Acids",
+"Amines",
+"Carbohydrates",
+"Polymers",
+"Chemistry in Everyday Life",
+];
+let class_twelve_mathematics = [
+"Relations and Functions",
+"Inverse Trigonometric Functions",
+"Matrices",
+"Determinants",
+"Continuity and Differentiability",
+"Application of Derivatives",
+"Integrals",
+"Application of Integrals",
+"Differential Equations",
+"Vector Algebra",
+"Three Dimensional Geometry",
+"Linear Programming",
+"Probability",
+]; %>
+
+
+
+<header class="header">
+  <div class="header__logo-box">
+    <img src="images/scithonlogo.jpeg" alt="logo" class="header__logo">
+  </div>
+
+  <div class="header__text-box">
+    <h1 class="heading-primary">
+      <span class="heading-primary--main">Scithon</span>
+      <span class="heading-primary--sub">Where learning starts from</span>
+    </h1>
+    <a href="#exploremore" class="btn-non-bootstrap btn-non-bootstrap--white btn-non-bootstrap--animated">Discover
+      more</a>
+  </div>
+</header>
+<div class="fact-card-container">
+  <div class="fact-container-heading">
+    <p>Some Science Facts</p>
+  </div>
+  <form action="/showfact" class="fact-card" method="POST">
+    <img class="fact-card-img" src="images/facts/<%= facts[0].imgsrc %>" alt=<%= facts[0].factHeading %> />
+    <div>
+      <h3><%= facts[0].factHeading.toUpperCase() %></h3>
+      <p><%= facts[0].factDiscription %> </p>
+      <button class="btn  classic-button" type="submit" name="factId" value=<%= facts[0].factId %>>Read
+        More</button>
+    </div>
+  </form>
+  <% var no_of_facts = 0 %>
+  <% if (facts.length > 5) { %>
+  <% no_of_facts = 5 %>
+  <% } else { %>
+  <% no_of_facts = facts.length%>
+  <% } %>
+  <% for(var i=1; i < no_of_facts; i++) {%>
+  <% if(i % 2 == 0) { %>
+  <% var slide = "fade-right" %>
+  <% } else { %>
+  <% var slide = "fade-left" %>
+  <% } %>
+  <% const imgsrc = "images/facts/"+facts[i].imgsrc %>
+  <% const factHeading = facts[i].factHeading.toUpperCase() %>
+  <% const factId = facts[i].factId %>
+  <% const factDiscription = facts[i].factDiscription %>
+  <form action="/showfact" class="fact-card" data-aos=<%= slide %> method="POST">
+    <img class="fact-card-img" src=<%= imgsrc %> alt=<%= factHeading %> />
+    <div>
+      <h3><%= factHeading %></h3>
+      <p><%= factDiscription %> </p>
+      <button class="btn classic-button" type="submit" name="factId" value=<%= factId %>>Read
+        More</button>
+    </div>
+  </form>
+  <% } %>
+</div>
+<div class="exploremore">
+  <form action="/navbutton" method="POST">
+    <div id="exploremore" class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI PHYSICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_physics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_p_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI CHEMISTRY
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_chemistry.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_c_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI MATHEMATICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_mathematics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_m_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII PHYSICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_physics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_p_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %></button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII CHEMISTRY
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_chemistry.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_c_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII MATHEMATICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_mathematics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_m_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 col-md-12">
+        <a href="/showallfacts"><button class="btn classic-button" type="button">All Science
+            Facts</button></a>
+      </div>
+    </div>
+  </form>
+  <p>To Get Handwriten Notes Please Register</p>
+</div>
+
+<div id="login" class="container">
+  <div class="row align-items-center justify-content-center">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 b-height">
+      <div class="row b-wrapper">
+        <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 b-min-height">
+          <div class="b-title text-center">
+            <h1 class="user_title">Welcome</h1>
+            <p class="user_subTitle">To keep Connected with us please </br> login with your personal info.</p>
+            <button type="button" class="swift sign_in">Sign In</button>
+          </div>
+        </div>
+
+        <div id="register" class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+          <div class="b-form text-center">
+            <div class="b-form-title">
+              <h1 class="form_title">Create Account</h1>
+              <p class="b-subtext">Use Your Email For Registration</p>
+            </div>
+            <form id = "signinlogin" action="/register" method="POST">
+              <div class="form-group username">
+                <input class="form-control" type="text" id="username" name="user_name" placeholder="Name" required>
+                <i class="fas fa-user b-font"></i>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="email" name="user_email" placeholder="Email" required>
+                <i class="fas fa-envelope b-font"></i>
+              </div>
+              <div class="form-group">
+                <input class="form-control" type="password" name="user_pass" pattern=".{8,16}" title="use min 8 characters maximum 16 charters containing !@#$%^&* a-z A-Z 0-9" size=30 pattern="[!@#$%^&*][a-z][A-Z][0-9]" placeholder="Password" required>
+                <i class="fas fa-unlock-alt b-font"></i>
+              </div>
+              <div class="form-group">
+                <a href="/forgetpassword"><span class="b-forgot">Forgot your password?</span></a>
+              </div>
+              <button type="submit" class="sign_up">Sign Up</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%- include('footer'); -%>

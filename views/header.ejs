@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Fonts -->
+
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
+
+  <!-- Animation on Scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- Bootstrap 4 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- FontAwesome CDN -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+
+  <!-- our stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="192x192" href="images/logo.ico" >
+
+  <title><%= title %> </title>
+</head>
+
+<body>
+  <% var forward = ""; %> 
+  <% if(title === "SCITHON") { %>
+    <% forward_login = "#login" %>   
+    <% forward_register = "#register" %>  
+ <% } else { %>
+  <% forward_login = "/#login" %>   
+  <% forward_register = "/#register" %>  
+<% } %>
+<% let class_eleven_physics = [
+"MATHEMATICAL TOOL FOR PHYSICS", 
+"UNITS AND MEASUREMENTS",
+"VECTOR",
+"ONE DIMENSIONAL MOTION",
+"RELATIVE MOTION",
+"PROJECTILE MOTION",
+"NEWTON'S LAWS OF MOTION (NLM)",
+"WORK POWER ENERGY",
+"CIRCULAR MOTION",
+"CENTRE OF MASS (COM)",
+"ROTATIONAL MOTION"];
+let class_eleven_chemistry = [
+"Some Basic Concepts of Chemistry",
+"Structure of Atom",
+"Classification of Elements and Periodicity in Properties",
+"Chemical Bonding and Molecular Structure",
+"States of Matter",
+"Thermodynamics",
+"Equilibrium",
+"Redox Reactions",
+"Hydrogen",
+"The s-Block Elements",
+"The p-Block Elements",
+"Organic Chemistry – Some Basic Principles and Techniques",
+"Hydrocarbons",
+"Environmental Chemistry",
+];
+let class_eleven_mathematics = [
+"Sets",
+"Relations and Functions",
+"Trigonometric Functions",
+"Principle of Mathematical Induction",
+"Complex Numbers and Quadratic Equations",
+"Linear Inequalities",
+"Permutations and Combinations",
+"Binomial Theorem",
+"Sequences and Series",
+"Straight Lines",
+"Conic Sections",
+"Introduction to Three Dimensional Geometry",
+"Limits and Derivatives",
+"Mathematical Reasoning",
+"Statistics",
+"Probability",
+];
+let class_twelve_physics = [
+"ELECTRIC CHARGES AND FIELDS",
+"ELECTROSTATIC POTENTIAL AND CAPACITANCE",
+"CURRENT ELECTRICITY",
+"MOVING CHARGES AND MAGNETISM",
+"MAGNETISM AND MATTER",
+"ELECTROMAGNETIC INDUCTION",
+"ALTERNATING CURRENT",
+"ELECTROMAGNETIC WAVES",
+"RAY OPTICS AND OPTICAL INSTRUMENTS",
+"WAVE OPTICS",
+"DUAL NATURE OF RADIATION AND MATTER",
+"ATOMS",
+"NUCLEI",
+"SEMICONDUCTOR ELECTRONICS: MATERIALS, DEVICES AND SIMPLE CIRCUITS",
+];
+let class_twelve_chemistry = [
+"THE SOLID STATE",
+"SOLUTIONS",
+"ELECTROCHEMISTRY",
+"CHEMICAL KINETICS",
+"SURFACE CHEMISTRY",
+"GENERAL PRINCIPLES AND PROCESSES OF ISOLATION OF ELEMENTS",
+"THE p-BLOCK ELEMENTS",
+"THE d-AND f-BLOCK ELEMENTS",
+"COORDINATION COMPOUNDS",
+"Haloalkanes and Haloarenes ",
+"Alcohols, Phenols and Ethers",
+"Aldehydes, Ketones and Carboxylic Acids",
+"Amines",
+"Carbohydrates",
+"Polymers",
+"Chemistry in Everyday Life",
+];
+let class_twelve_mathematics = [
+"Relations and Functions",
+"Inverse Trigonometric Functions",
+"Matrices",
+"Determinants",
+"Continuity and Differentiability",
+"Application of Derivatives",
+"Integrals",
+"Application of Integrals",
+"Differential Equations",
+"Vector Algebra",
+"Three Dimensional Geometry",
+"Linear Programming",
+"Probability",
+]; %> 
+
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+  
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <!-- Brand -->
+        <a class="navbar-brand" href="/">Scithon</a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="https://www.youtube.com/channel/UC2akT6_7qrmGZlXgaB-ABoA">Youtube</a>
+          </li>
+          <form action="/navbutton" method="POST">
+            <li class="nav-item">          
+              <!-- Level one dropdown -->
+              <li class="nav-item dropdown">
+                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">CLASS XI JEE-NEET</a>
+                <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">  
+                  <li class="dropdown-divider"></li>
+      
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHYSICS  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_eleven_physics.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "e_p_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">CHEMISTRY  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_eleven_chemistry.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "e_c_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">MATHEMATICS  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_eleven_mathematics.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "e_m_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                                                      
+                </ul>                        
+              </li>
+              <!-- End Level one -->                          
+          </form>
+          <form action="/navbutton" method="POST">
+            <li class="nav-item">          
+              <!-- Level one dropdown -->
+              <li class="nav-item dropdown">
+                <a id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link dropdown-toggle">CLASS XII JEE-NEET</a>
+                <ul aria-labelledby="dropdownMenu1" class="dropdown-menu border-0 shadow">  
+                  <li class="dropdown-divider"></li>
+      
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">PHYSICS  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_twelve_physics.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "t_p_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %></button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">CHEMISTRY  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_twelve_chemistry.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "t_c_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                  <!-- Level two dropdown-->
+                  <li class="dropdown-submenu">
+                    <a id="dropdownMenu2"  role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-item dropdown-toggle">MATHEMATICS  </a>
+                    <ul aria-labelledby="dropdownMenu2" class="dropdown-menu border-0 shadow">
+                      <% class_twelve_mathematics.forEach(function(topic) {  %> 
+                        <li><button type="submit" class="dropdown-item" name = "t_m_topic" value = "<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+                     <% })  %> 
+                    </ul>
+                  </li>
+                  <!-- End Level two -->
+                                                      
+                </ul>                        
+              </li>
+              <!-- End Level one -->                          
+          </form>
+          <li class="nav-item">
+              <li class="nav-item"><a href="/shownotes" class="nav-link">Show Notes</a></li>
+          </li>                   
+          <li class="nav-item">
+            <a class="nav-link" href = <%= forward_login %> >Sign In</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href = <%= forward_register %> >Register</a>
+          </li>          
+          <li class="nav-item">
+          <li class="nav-item"><a href="#footer" class="nav-link">Contact Us</a></li>
+          <li class="nav-item">
+            <li class="nav-item"><a href="/about" class="nav-link">About Us</a>
+          </li>
+        </ul>
+      </div>
+  </nav>

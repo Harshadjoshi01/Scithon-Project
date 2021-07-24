@@ -1,0 +1,27 @@
+<%- include('header'); -%>
+
+<% var factimgsrc = '../images/facts/' + factimgsrc %> 
+<% var factVideo = "https://www.youtube.com/embed/" + factVideo +"/?controls=1"%> 
+
+<div class="blog-body">
+    <img class = "blog-thumbnail"src= <%= factimgsrc %>  alt="thumbnail" />
+  <div class="blog-heading">
+      <p><%= factHeading.toUpperCase() %> </p>
+  </div>
+  <div class="blog-content">
+      <p><%= factContent %> </p>
+  </div>
+  <div id = "video" class="blog-heading">
+      <p>Watch The Video On <%= factHeading.toUpperCase() %> </p>
+  </div>
+  <div class="blog-video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_oXlrf8cle8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+  </div>
+</div>
+
+
+
+
+
+<%- include('footer'); -%>

@@ -1,0 +1,212 @@
+<%- include('header'); -%>
+<% let class_eleven_physics = [
+"MATHEMATICAL TOOL FOR PHYSICS", 
+"UNITS AND MEASUREMENTS",
+"VECTOR",
+"ONE DIMENSIONAL MOTION",
+"RELATIVE MOTION",
+"PROJECTILE MOTION",
+"NEWTON'S LAWS OF MOTION (NLM)",
+"WORK POWER ENERGY",
+"CIRCULAR MOTION",
+"CENTRE OF MASS (COM)",
+"ROTATIONAL MOTION"];
+let class_eleven_chemistry = [
+"Some Basic Concepts of Chemistry",
+"Structure of Atom",
+"Classification of Elements and Periodicity in Properties",
+"Chemical Bonding and Molecular Structure",
+"States of Matter",
+"Thermodynamics",
+"Equilibrium",
+"Redox Reactions",
+"Hydrogen",
+"The s-Block Elements",
+"The p-Block Elements",
+"Organic Chemistry – Some Basic Principles and Techniques",
+"Hydrocarbons",
+"Environmental Chemistry",
+];
+let class_eleven_mathematics = [
+"Sets",
+"Relations and Functions",
+"Trigonometric Functions",
+"Principle of Mathematical Induction",
+"Complex Numbers and Quadratic Equations",
+"Linear Inequalities",
+"Permutations and Combinations",
+"Binomial Theorem",
+"Sequences and Series",
+"Straight Lines",
+"Conic Sections",
+"Introduction to Three Dimensional Geometry",
+"Limits and Derivatives",
+"Mathematical Reasoning",
+"Statistics",
+"Probability",
+];
+let class_twelve_physics = [
+"ELECTRIC CHARGES AND FIELDS",
+"ELECTROSTATIC POTENTIAL AND CAPACITANCE",
+"CURRENT ELECTRICITY",
+"MOVING CHARGES AND MAGNETISM",
+"MAGNETISM AND MATTER",
+"ELECTROMAGNETIC INDUCTION",
+"ALTERNATING CURRENT",
+"ELECTROMAGNETIC WAVES",
+"RAY OPTICS AND OPTICAL INSTRUMENTS",
+"WAVE OPTICS",
+"DUAL NATURE OF RADIATION AND MATTER",
+"ATOMS",
+"NUCLEI",
+"SEMICONDUCTOR ELECTRONICS: MATERIALS, DEVICES AND SIMPLE CIRCUITS",
+];
+let class_twelve_chemistry = [
+"THE SOLID STATE",
+"SOLUTIONS",
+"ELECTROCHEMISTRY",
+"CHEMICAL KINETICS",
+"SURFACE CHEMISTRY",
+"GENERAL PRINCIPLES AND PROCESSES OF ISOLATION OF ELEMENTS",
+"THE p-BLOCK ELEMENTS",
+"THE d-AND f-BLOCK ELEMENTS",
+"COORDINATION COMPOUNDS",
+"Haloalkanes and Haloarenes ",
+"Alcohols, Phenols and Ethers",
+"Aldehydes, Ketones and Carboxylic Acids",
+"Amines",
+"Carbohydrates",
+"Polymers",
+"Chemistry in Everyday Life",
+];
+let class_twelve_mathematics = [
+"Relations and Functions",
+"Inverse Trigonometric Functions",
+"Matrices",
+"Determinants",
+"Continuity and Differentiability",
+"Application of Derivatives",
+"Integrals",
+"Application of Integrals",
+"Differential Equations",
+"Vector Algebra",
+"Three Dimensional Geometry",
+"Linear Programming",
+"Probability",
+]; %>
+<!-- body -->
+<div class="logout">
+      <form action="/logout" method="POST">
+        <button class="btn btn-danger private-button" type="submit">Log Out</button>
+      </form>
+</div>
+<div class="eleven-heading">
+  <p>Check Out Our Hand Writen Notes</p>
+  <hr>
+</div>
+<div style="padding-top: 5rem; padding-bottom: 5rem; text-align:center;margin-top: 5rem; margin-bottom: 10rem;">
+  <form action="/shownotes" method="POST">
+    <div id="exploremore" class="row">
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI PHYSICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_physics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_p_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI CHEMISTRY
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_chemistry.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_c_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XI MATHEMATICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_eleven_mathematics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="e_m_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII PHYSICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_physics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_p_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %></button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII CHEMISTRY
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_chemistry.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_c_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="dropdown">
+          <button class="btn classic-button dropdown-toggle" type="button" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            XII MATHEMATICS
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <% class_twelve_mathematics.forEach(function(topic) {  %>
+            <li><button type="submit" class="dropdown-item" name="t_m_topic"
+                value="<%= topic.replace(/\s+/g, " ").trim().toUpperCase() %>"><%= topic.toUpperCase() %> </button></li>
+            <% })  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('footer'); -%>

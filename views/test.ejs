@@ -1,0 +1,14 @@
+<%- include('header'); -%>
+
+<div class="forms">
+    <form action="/upload" method="POST" encType="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleFormControlFile1">Fact Video thumbnail</label>
+            <input type="file" class="form-control-file" name="file" id="exampleFormControlFile1">
+        </div>
+        <button type="submit" class="btn classic-button">Submit</button>    
+    
+    </form>
+</div>
+
+<%- include('footer'); -%>

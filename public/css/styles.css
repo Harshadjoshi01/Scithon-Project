@@ -1,0 +1,684 @@
+
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5% ; /* we have converted all the size in rem so that we don't have to write much of media quaries and we just change the percentage of html 10/16 = 0.625'*/
+}
+
+body {
+    font-family: "Josefin Sans", sans-serif;
+    font-weight: 400;
+    /* font-size: 16px; */
+    line-height: 1.7;
+    padding: 2rem;
+    box-sizing: border-box;
+    background:#C0C0C0;
+    font-size:1.7rem;
+}
+.nav-link{
+    margin-right:1.5rem;
+}
+.navbar-brand{
+    font-size: 3rem;
+}
+
+
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.dropdown-submenu {
+    position: relative;
+  }
+  
+  .dropdown-submenu>a:after {
+    content: "\f0da";
+    float: none;
+    border: none;
+    font-family: 'FontAwesome';
+  }
+  
+  .dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+  }
+  .dropdown-item{
+      font-size:1.5rem;
+  }
+  /*
+  *
+  * ==========================================
+  * FOR DEMO PURPOSES
+  * ==========================================
+  *
+  */
+  
+  @media (min-width: 991px) {
+    .dropdown-menu {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+
+.img-responsive{
+    height:60rem;
+}
+
+
+
+
+.header {
+    height: 95vh;    /* always tries to fit 95% of the view port linear-gradient(to right bottom, rgba(22, 24, 26, 0.8), rgba(27, 23, 23, 0.8))*/
+    background-image:linear-gradient(to right bottom,rgb(0, 0, 0, 0.8), rgb(67, 67, 67, 0.8) ) , url(../images/background.jpeg);
+    background-size: cover;    /* always tries to fit the screen */
+    background-position: top; /* always crop the image from bottom and top of the image remains the same */
+    clip-path: polygon(0 0, 100% 0 ,100% 100%, 0 100%);  /* new property in css by which we can cut the objects as spacified dimensions */
+    position: relative;
+}
+
+
+.header__logo-box{
+    position: absolute; /* will have fixed position with respect to header */
+    top: 4rem;
+    left: 4rem;
+}
+
+.header__logo {
+    height: 10rem;
+}
+
+
+.header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* this attribute specifies the position of the element with respect to itself */
+    text-align: center;
+}
+
+.heading-primary {
+    text-transform: uppercase;
+    color: #fff;
+    backface-visibility: hidden; /* by using this property the shaking of transaction will not happen */
+    margin-bottom: 6rem;
+}
+
+.heading-primary--main {
+    display: block; /* defined block so both of the text cannot align in the same line */
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 2.5rem;
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    margin-bottom: 2rem;   /* animation will faster at start and slower at end */
+}
+
+.heading-primary--sub {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: 1rem;
+    animation: moveInRight 1s ease-out; /* animation will slower at start and faster at end */
+    /* animation-name: moveInRight;
+    animation-duration: 1s;
+    animation-timing-function: ease-in; */
+
+}
+
+@keyframes moveInLeft {  /* transation to move heading-main from left to right */ 
+    0%{
+        opacity: 0;
+        transform: translateX(-10rem)
+
+    }
+
+    80%{
+        transform: translateX(1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+    
+}
+
+@keyframes moveInRight {        /* transation to move heading-sub from right to left */ 
+    0%{
+        opacity: 0;
+        transform: translateX(10rem)
+
+    }
+
+    80%{
+        transform: translateX(-1rem);
+    }
+
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {        /* transation to move heading-sub from right to left */ 
+    0%{
+        opacity: 0;
+        transform: translateY(3rem);
+
+    }
+    100%{
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.btn-non-bootstrap:link,                          /* we use button with link sudo class when we put button inside the anchor tag*/
+.btn-non-bootstrap:visited {
+    text-transform: uppercase;          /* this is the visited state of the button */
+    text-decoration: none;
+    padding : 1.5rem 4rem;
+    display: inline-block;                /* when we link a class wiith previously defined class then the class is called sudo class*/
+    border-radius : 10rem; 
+    transition: all .2s;
+    position: relative; 
+    font-size : 1.6rem;  
+}
+
+.btn-non-bootstrap--white {
+    background-color:#fff;
+    color: #000;
+}
+
+.btn-non-bootstrap:hover {
+    transform: translateY(-0.3rem );     /* this is the hovering state of button*/   
+    box-shadow: 0 1rem 2rem rgb(129, 125, 125);        /* box-shadow:  x-dir, y-dir, bulreffect, color of shdow */
+}
+
+.btn-non-bootstrap:active {
+    transform : translateY(-0.1rem);
+    box-shadow: 0 0.5rem 1rem rgb(129, 125, 125);  
+}
+
+.btn-non-bootstrap::after{
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 10rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all .4s;
+
+}
+
+.btn-non-bootstrap--white::after{
+    background-color:#fff;
+}
+
+.btn-non-bootstrap:hover::after{
+    transform: scaleX(1.4) scaleY(1.6);   /*scale property simply scales the size of element*/
+    opacity: 0;  /*fadding out the button*/
+}
+
+.btn-non-bootstrap--animated {
+    animation: moveInBottom .5s ease-out .75s;   /* animation: time, style, delay */
+    animation-fill-mode: backwards;
+}
+
+/* Below the header */
+.fact-card-container {
+    margin: auto;
+    overflow: auto;
+    padding: 1.5rem 5rem 1.5rem 5rem;
+    background-color: rgb(48, 43, 99);
+  }
+.fact-container-heading{
+    text-align: center;
+    font-size: 4.5rem;
+    font-weight: bold;
+    color:#fff;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+
+}
+  .fact-card-img {
+    width: 100%;
+    border-radius: 5rem;
+  }
+  
+  .fact-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2rem;
+    background: #f1f1f1;
+    margin-bottom: 1.5rem;
+    border-radius: 1.5rem;
+  }
+  
+  .fact-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    color: #000;
+  }
+  
+  .fact-card p {
+      font-family: "Lato", sans-serif;
+      font-size: 2rem;
+      font-weight: 2rem;
+      margin-bottom: 1rem;
+      color: #000;
+  }
+  .fact-card img {
+    height: 25rem;
+    padding: 2rem;
+    
+  }
+  
+  .fact-card > div {
+    padding: 2rem;
+  }
+  
+  .fact-card:nth-child(even) img {
+    order: 2;
+  }
+  /* explore more buttons */
+  .exploremore{
+      text-align: center;
+      padding: 2rem;
+      margin:1.5rem;
+  }
+  .exploremore p {
+    margin: 1.5rem;      
+    padding:2rem;
+    font-family: "Lato", sans-serif;
+    letter-spacing:0.5rem;
+    font-size:3.5rem;
+    font-weight: 700;
+    color:#000;
+  }
+.classic-button {
+    text-transform: uppercase;          /* this is the visited state of the button */
+    text-decoration: none;
+    margin: 2rem 0;
+    padding : 1.5rem 3rem;
+    display: inline-block;                /* when we link a class wiith previously defined class then the class is called sudo class*/
+    border-radius : 10rem; 
+    transition: all .2s;
+    position: relative; 
+    font-size : 1.6rem;  
+    color : #fff;
+    background-color: #000;
+}
+  /* Form CSS */
+.b-height{
+    position: relative;
+    padding:3rem 0rem 0rem;
+}
+.b-wrapper{
+    display:flex;
+    align-items:center;
+    min-height: 65rem;
+    background-image: linear-gradient(to right bottom, rgba(215, 230, 245, 0.8), rgba(184, 180, 218, 0.8)), url(../images/background2.jpg);
+    box-shadow: 0rem 0.3rem 1rem rgba(0,0,0,.2);
+} 
+.b-min-height{
+    height: 65rem;
+    background: rgb(48, 43, 99);
+}
+.b-logo{
+    width:10rem;
+}
+.b-title{
+    padding:10rem 0rem 0rem;
+}
+.b-title h1{
+    color:#fff;
+    font-weight:600;
+}
+.b-title p{
+    color: #fff;
+    margin:3rem 0rem 4rem;
+    font-size:2rem;
+}
+.b-title button{
+    letter-spacing: 0.04rem;
+    padding: 1.5rem 8.5rem;
+    border-radius: 3.6rem;
+    border: 0.15rem solid #fff;
+    background: transparent;
+    color: #fff;
+    text-transform: uppercase;
+}
+.b-title button:focus{
+    outline:none;
+}
+.b-form{
+    width:60%;
+    margin:auto;
+    padding:2rem;
+}
+.b-form-title h1{
+    color: #000;
+    font-size: 3.4rem;
+    font-weight: 900;
+}
+.b-form-title i{
+    width: 5rem;
+    height: 5rem;
+    border: 0.1rem solid #000;
+    border-radius: 3.6rem;
+    line-height: 4.6rem;
+    font-size: 2rem;
+    margin: 1.3rem 0.5;
+    color:#000;
+    cursor:pointer;
+}
+.b-subtext{
+    color: #000;
+    font-size: 1.4rem;
+}
+.b-form .form-control{
+    font-size:1.4rem;
+    height: 5rem;
+    color: #000;
+    padding-left: 4.5rem;
+    background: #DDDDDD;
+    border-color: #000;
+}
+.b-form .form-control:focus{
+    outline:none;
+    box-shadow:none;
+} 
+.form-group{
+    position: relative;
+}
+.b-font{
+    position: absolute;
+    top: 1.8rem;
+    left: 1.8rem;
+    z-index: 10;
+    color: #000;
+    font-size:1.3rem;
+}    
+.b-form button{
+    letter-spacing: 0.04rem;
+    padding: 1.5rem 8.5rem;
+    border-radius: 3.6rem;
+    border: 0.15rem solid #fff;
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top:2.5rem;
+}
+.b-form button:focus{
+    outline:none;
+}
+.b-form .b-forgot{
+    border-bottom: 0.1rem solid #e8e4e4;
+    padding-bottom: 1rem;
+    color: #000;
+    font-size: 1.4rem;
+    font-weight: 60rem;
+    cursor:pointer;
+    display:none;
+}
+.swift_right{
+    display:none;
+}
+.swift_element{
+    display:flex;
+    align-items:unset;
+    flex-direction: row-reverse;
+    transition:0.3s ease-in-out;
+    -webkit-transition:0.3s ease-in-out;
+    -moz-transition:0.3s ease-in-out;
+    -ms-transition:0.3s ease-in-out;
+    -o-transition:0.3s ease-in-out;
+}
+
+/* other pages */
+.eleven-heading {
+    text-align: center;
+    font-weight: bold;
+    font-size: 4rem;
+    margin: 2rem 0;
+    padding: 2rem;
+}
+.card { 
+    border-radius: 2rem;
+    margin: 2rem;
+}
+.card-img-top{
+    padding:1rem;
+}
+hr {
+    position: relative;
+    top: 2rem;
+    border: none;
+    height: 0.5rem;
+    background: black;
+    margin-bottom: 5rem;
+}
+.logout { 
+    padding:2rem;
+    text-align: right;
+}
+.private-button {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 2rem;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    margin:1.5rem;
+}
+
+.admin-form{
+    float: left;
+    margin: 10px 0;
+}
+
+.subject-table {
+    padding: 2rem;
+    text-align: center;
+    border-radius: 2rem;
+}
+.table-a:link,
+.table-a:visited {
+    font-size: 2rem;
+    text-decoration: none;
+    color:#fff
+}
+
+th {
+    font-family: "Lato", sans-serif;
+    font-size:2.5rem;
+}
+.table-a:hover {
+    color:#000;
+}
+
+.table-head {
+    text-align: center;
+    font-size:5rem;
+    font-weight: bold;
+    margin: 2rem;
+}
+
+.blog-body {
+    padding:2rem;
+    margin:2rem;
+    text-align:center;
+}
+.blog-thumbnail {
+    height: 50rem;
+    width: auto;
+    border-radius: 3.5rem;
+}
+.blog-heading {
+    font-family: "Lato", sans-serif;
+    font-weight: bold;
+    letter-spacing: 1rem;
+    font-size: 4rem;
+    margin: 2rem 0;
+    padding: 2rem;
+}
+.blog-content{
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 4rem;
+    margin: 2rem 0;
+    padding: 2rem;
+}
+.blog-video {
+    text-align: center;
+    padding: 2rem 2rem;
+    height: 50rem;
+    background:#000;
+}
+iframe {
+    height: 45rem;
+    width: 70rem;
+}
+
+.close {
+    font-size: 2.5rem;
+}
+/* all forms of the admin */
+.forms {
+    font-size: 1.5rem;
+    padding:2rem 30rem;
+}
+
+/*footer*/
+.col_white_amrc { color:#FFF;}
+footer { margin-top: 20px; width:100%; background-color:#302b63; min-height:250px; padding:10px 0px 25px 0px ;}
+.pt2 { padding-top:40px ; margin-bottom:20px ;}
+footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
+.mb10 { padding-bottom:20px ;}
+.fleft { float:left;}
+.padding-right { padding-right:20px; }
+
+.footer_ul2_amrc {margin:0px; list-style-type:none; padding:0px;}
+.footer_ul2_amrc li {display:inline}
+.footer_ul2_amrc li a:hover { text-decoration:none;}
+.footer_ul2_amrc li i { color:#fff;margin-top:5px;}
+
+.bottom_border { border-bottom:1px solid #323f45; padding-bottom:20px;}
+
+
+
+
+
+@media screen and (max-width: 900px) {
+    html {
+        font-size: 45% ;
+    }
+    .img-responsive{
+        height:50rem;
+    }
+    .navbar-toggler-icon{height:4rem; width:4rem;}
+    
+    .fact-card-container {
+        height: auto;
+    }
+    .fact-card {
+        display: block;
+    }
+    .b-min-height{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .blog-thumbnail{
+        height: 40rem;
+        width: auto;
+    }
+    iframe {
+        height: 45rem;
+        width: 60rem;
+    }
+  }
+  
+
+  @media screen and (max-width: 600px) {
+    html {
+        font-size: 35% ;
+    }
+    .img-responsive{
+        height:50rem;
+    }
+    .header__logo-box{
+        position: absolute; /* will have fixed position with respect to header */
+        top: 2rem;
+        left: 2rem;
+    }
+    
+    .fact-card-container {
+        height: auto;
+    }
+    .b-min-height{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .fact-card {
+        display: block;
+    }
+    .blog-thumbnail{
+        height: 30rem;
+        width: auto;
+    }
+    iframe {
+        height: 35rem;
+        width: 50rem;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .img-responsive{
+        height:35rem;
+        width: auto;
+    }
+  }
+
+  @media screen and (max-width: 364px) {
+    html {
+        font-size: 35% ;
+    } 
+    .fact-card-container {
+        height: auto;
+    }
+    .img-responsive{
+        height:25rem;
+        width: auto;
+    }
+    .navbar-toggler-icon{height:4rem; width:4rem;}
+    .b-min-height{
+        margin-left: 15px;
+        margin-right: 15px;
+    }
+    .fact-card {
+        display: block;
+    }
+    .blog-thumbnail{
+        height: 30rem;
+        width: 40rem;
+    }
+    iframe {
+        height: 30rem;
+        width: 40rem;
+    }
+  }

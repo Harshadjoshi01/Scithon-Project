@@ -1,0 +1,55 @@
+<%- include('header'); -%>
+
+<% var subject = subject_name %>
+<% var material = material %>
+<% var chapter_name = chapter_name %> 
+
+
+
+<div class="eleven-heading">
+    <p style="margin-top:7rem;"><%= chapter_name %></p>
+    <hr>
+</div>
+
+<!-- body -->
+<div class="mathematics">
+    <table class="table table-dark table-striped subject-table">
+        <thead>
+            <tr>
+                <th scope="col">Lecture Topic</th>
+                <th scope="col">Lecture Notes</th>                
+                <th scope="col">Lecture PPT</th>
+                <th scope="col">Lecture Video</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% material.forEach(function(topic){ %>
+            <tr>    
+                    <% let lecture_topic = topic.topic_name %>
+                    <% let lecture_notes = topic.topic_pdf %>
+                    <% let lecture_ppt = topic.topic_ppt %>
+                    <% let lecture_video = topic.topic_link %>
+                    <td><a class="table-a" href="#"><%= lecture_topic.toUpperCase() %></a></td>
+                    <td><a class="table-a" href="/notes/<%= lecture_notes %> ">Read Notes</a></td>                    
+                    <td><a class="table-a" href="/ppt/<%= lecture_ppt %> ">See PPT</a></td>
+                    <td><a class="table-a" href="<%= lecture_video %> ">Watch Video</a></td>                    
+            </tr>
+            <% }); %> 
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('footer'); -%>
