@@ -5,3 +5,4 @@ The website is made by me Harshad Joshi (BE Information Technology, PUNE UNIVERS
 You can suggest our website to anyone who is science enthusiastic because along with XIth and XIIth material we will also writing blogs on science facts.
 
 Here is our website [clickhere](https://scithon.com).
+[![ezgif.com-gif-maker-2c04706bc7ea489e6.gif](https://s4.gifyu.com/images/ezgif.com-gif-maker-2c04706bc7ea489e6.gif)](https://gifyu.com/image/SwIvO)
