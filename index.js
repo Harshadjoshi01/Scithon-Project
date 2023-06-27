@@ -55,14 +55,36 @@ var options = {
 };
 
 var sessionStore = new MySQLStore(options);
-var db = mysql.createConnection(options);
-db.connect(function(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Connected to MySQL!");
-  }
-});
+var db;
+// we have to create a new connection pool as the old one cannot be reused after the connection is closed
+var connectToDB = function() {
+  db = mysql.createPool(options);
+  db.getConnection(function(err, connection) {
+    if (err) {
+      console.log("error when connecting to db:", err);
+      setTimeout(connectToDB, 2000); // We introduce a delay before attempting to reconnect,
+    } else {
+      console.log("Database Connected");
+      connection.release();
+    }
+  });
+  db.on("error", function(err) {
+    console.log("Database Error", err);
+    if (err.code === "PROTOCOL_CONNECTION_LOST") {
+      connectToDB();
+    } else {
+      throw err;
+    }
+  });
+};
+systemMessage = function(message) {
+  console.log("====================================================");
+  console.log("Database is Reconnecting But the app will not crash");
+  console.log("====================================================");
+};
+
+connectToDB();
+console.log("Application is Running");
 
 app.use(
   session({
@@ -143,6 +165,27 @@ app.get("/about", (req, res) => {
   res.locals.title = "ABOUT US"
   res.render("about");
 })
+
+//------------------------------ADMIN PAGE ROUTE---------------------------------------------------------------
+app.get("/n4v8b2f1h3g7t1y", (req, res) => {
+  res.locals.title = "MAHVEER"
+  res.render("mahveer");
+})
+app.post("/n4v8b2f1h3g7t1y", (req, res) => {
+  const name = req.body.name;
+  const password = req.body.password;
+  if (name === process.env.ADMIN_NAME && password === process.env.ADMIN_PASSWORD) {
+    isAdmin = true;
+    res.redirect("/admin");
+  } else {
+    res.redirect("/");
+  }
+})
+app.get("/admin", isvalidAdmin, (req, res) => {
+  res.locals.title = "ADMIN"
+  res.render("admin");
+});
+
 //--------------------------------USER REGISTRAION ROUTE-----------------------------------------------------
 
 app.post("/register", (req, res) => {
